@@ -1,0 +1,289 @@
+:root{
+  --bg1:#0c0f0b;
+  --neon:#b7ff69;
+  --neon2:#7dff2a;
+  --text:#eaf7dc;
+  --muted:#9fb38f;
+  --panel:#040604;
+  --border: rgba(183,255,105,.9);
+}
+
+*{ box-sizing:border-box; }
+
+html, body{ height:100%; }
+
+body{
+  margin:0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  background: radial-gradient(circle at 30% 20%, #1a2017, var(--bg1));
+  color: var(--text);
+  overflow: hidden;
+}
+
+.frame{
+  height: 100vh;
+  padding: 12px 14px;
+  border: 3px solid rgba(183,255,105,.45);
+  box-shadow: 0 0 60px rgba(183,255,105,.15) inset;
+
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+  min-height: 0;
+}
+
+/* Top layout */
+.headerGrid{
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+
+  display:grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 18px;
+  align-items: start;
+  flex: 0 0 auto;
+}
+
+.headerLeft{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.logo{
+  height: 120px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display:block;
+  filter: drop-shadow(0 0 18px rgba(183,255,105,.20));
+  user-select:none;
+}
+
+.topbarBtns{
+  display:flex;
+  gap: 10px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  cursor:pointer;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid rgba(183,255,105,.75);
+  color: var(--text);
+  background: rgba(183,255,105,.06);
+  font-family: inherit;
+}
+
+.btn:hover{ background: rgba(183,255,105,.12); }
+
+.btn.small{
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+/* Right header: paths + progress */
+.headerRight{
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.paths{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
+.path{
+  color: var(--muted);
+  font-size: 12px;
+  padding: 8px 10px;
+  border: 1px solid rgba(183,255,105,.25);
+  border-radius: 12px;
+  background: rgba(0,0,0,.35);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progressBlock{
+  width: 100%;
+  text-align:center;
+}
+
+.progress-title{
+  color: var(--neon);
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0 0 8px;
+}
+
+.bar{
+  height: 20px;
+  border-radius: 999px;
+  border: 3px solid rgba(183,255,105,.75);
+  background: rgba(255,255,255,.03);
+  overflow:hidden;
+}
+
+.bar-fill{
+  height:100%;
+  width:0%;
+  background: rgba(183,255,105,.85);
+  box-shadow: 0 0 20px rgba(183,255,105,.25);
+  transition: width 120ms linear;
+}
+
+.progress-meta{
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  min-height: 14px;
+}
+
+/* Bottom layout */
+.mainGrid{
+  max-width:1100px;
+  margin: 0 auto;
+  width: 100%;
+
+  display:grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 14px;
+
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Shared cards */
+.drop-card, .out-card, .gif-card{
+  background: linear-gradient(180deg, var(--panel), #000);
+  border: 3px solid var(--border);
+  border-radius: 24px;
+  padding: 14px;
+  box-shadow: 0 0 26px rgba(183,255,105,.18);
+}
+
+/* LEFT drop */
+.drop-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap: 10px;
+  min-height: 0;
+}
+
+.drop-card.dragover{
+  outline: 4px solid rgba(183,255,105,.35);
+  box-shadow: 0 0 55px rgba(183,255,105,.28);
+}
+
+.dropSquare{
+  width: 280px;
+  height: 280px;
+  max-width: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.drop-hero{
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* stays square, no stretching */
+  display:block;
+  pointer-events:none;
+  user-select:none;
+  filter: drop-shadow(0 0 14px rgba(183,255,105,.18));
+}
+
+.drop-sub{
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.hint{
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 360px;
+}
+
+/* RIGHT column stack: output top, gif bottom */
+.rightStack{
+  display:flex;
+  flex-direction:column;
+  gap: 14px;
+  min-height: 0;
+}
+
+/* Output card fills remaining space above gif */
+.out-card{
+  display:flex;
+  flex-direction:column;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.out-title{
+  color: var(--neon);
+  font-size: 30px;
+  font-weight: 900;
+  text-align:center;
+  margin: 4px 0 10px;
+  flex: 0 0 auto;
+}
+
+.out-log{
+  margin:0;
+  padding: 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow:auto; /* scroll inside the log */
+  background:#000;
+  border-radius: 16px;
+  border: 1px solid rgba(183,255,105,.25);
+  line-height: 1.35;
+  font-size: 14px;
+}
+
+/* GIF card pinned at bottom, fixed height, looping automatically because it's a gif */
+.gif-card{
+  padding: 10px;
+  flex: 0 0 auto;
+  height: 150px;         /* knob: make this 130-180 if you want */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.gif-media{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  display:block;
+  user-select:none;
+  pointer-events:none;
+  filter: drop-shadow(0 0 12px rgba(183,255,105,.18));
+}
+
+/* Smaller windows */
+@media (max-width: 980px){
+  body{ overflow:auto; }
+  .headerGrid{ grid-template-columns: 1fr; }
+  .mainGrid{ grid-template-columns: 1fr; }
+  .dropSquare{ width: 240px; height: 240px; }
+  .logo{ height: 110px; }
+  .gif-card{ height: 140px; }
+}

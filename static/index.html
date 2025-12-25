@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>File Sorter XX</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="frame">
+
+    <section class="headerGrid">
+      <div class="headerLeft">
+        <img class="logo" src="/fileSorter.png" alt="File Sorter XX" draggable="false" />
+
+        <div class="topbarBtns">
+          <button class="btn small" id="chooseSourceBtn" type="button">Choose source</button>
+          <button class="btn small" id="chooseOutputBtn" type="button">Choose output</button>
+          <button class="btn small" id="openOutputBtn" type="button">Open output</button>
+          <button class="btn small" id="processBtn" type="button">Process source</button>
+        </div>
+      </div>
+
+      <div class="headerRight">
+        <div class="paths">
+          <div class="path" id="sourcePath">Source: (loading)</div>
+          <div class="path" id="outputPath">Output: (loading)</div>
+        </div>
+
+        <div class="progressBlock">
+          <div class="progress-title">PROGRESS</div>
+          <div class="bar">
+            <div class="bar-fill" id="barFill"></div>
+          </div>
+          <div class="progress-meta" id="meta"></div>
+        </div>
+      </div>
+    </section>
+
+    <main class="mainGrid">
+      <!-- LEFT: Drop zone -->
+      <section class="drop-card" id="dropZone">
+        <div class="dropSquare">
+          <img class="drop-hero" src="/dropFilesHere.png" alt="Drop files here" draggable="false" />
+        </div>
+
+        <div class="drop-sub">or</div>
+
+        <label class="btn">
+          Choose files
+          <input id="fileInput" type="file" multiple hidden />
+        </label>
+
+        <div class="hint">
+          Drag drop copies into Output. Process source scans Source and copies into Output.
+        </div>
+      </section>
+
+      <!-- RIGHT: Output + looping gif -->
+      <section class="rightStack">
+        <div class="out-card">
+          <div class="out-title">OUTPUT</div>
+          <pre class="out-log" id="log"></pre>
+        </div>
+
+        <div class="gif-card" aria-label="Sorter animation">
+          <img class="gif-media" src="/sorterGif.gif" alt="Sorter animation" draggable="false" />
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
